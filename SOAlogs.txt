@@ -1,0 +1,64 @@
+<Jul 30, 2025 6:30:38,124 AM GMT+02:00> <Error> <WebLogicServer> <BEA-000337> <[STUCK] ExecuteThread: '31' for queue: 'weblogic.kernel.Default (self-tuning)' has been busy for "650" seconds working on the request "Workmanager: weblogic.kernel.Default, Version: 0, Scheduled=false, Started=true, Started time: 650548 ms
+", which is more than the configured time (StuckThreadMaxTime) of "600" seconds in "server-failure-trigger". Stack trace:
+        weblogic.rjvm.RJVMManager.findOrCreateRemoteInternal(RJVMManager.java:344)
+        weblogic.rjvm.RJVMManager.findOrCreate(RJVMManager.java:180)
+        weblogic.rjvm.RJVMFinder.findOrCreateRemoteServer(RJVMFinder.java:281)
+        weblogic.rjvm.RJVMFinder.findOrCreateInternal(RJVMFinder.java:244)
+        weblogic.rjvm.RJVMFinder.findOrCreate(RJVMFinder.java:174)
+        weblogic.rjvm.ClientServerURL.findOrCreateRJVM(ClientServerURL.java:179)
+        weblogic.jndi.WLInitialContextFactoryDelegate$1.run(WLInitialContextFactoryDelegate.java:354)
+        weblogic.security.acl.internal.AuthenticatedSubject.doAs(AuthenticatedSubject.java:386)
+        weblogic.security.service.SecurityManager.runAs(SecurityManager.java:163)
+
+<Jul 30, 2025 6:30:38,124 AM GMT+02:00>  [osb_server1] [NOTIFICATION] [BEA-382159] [oracle.osb.pipeline.kernel.router] [tid: [ACTIVE].ExecuteThread: '54' for queue: '
+weblogic.kernel.Default (self-tuning)'] [userId: <anonymous>] [ecid: 0997b224-f455-46f2-b06d-d11fea80d669-000587ac,0] [APP: Service Bus Kernel] [partition-na
+me: DOMAIN] [tenant-name: GLOBAL] [[
+ [OSB Tracing] The following variables are changed:
+ $attachments = <con:attachments xmlns:con="http://www.bea.com/wli/sb/context"/>
+$header = <soapenv:Header xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"/>
+$body = <soapenv:Body xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Fault xmlns:v1="http://TEST/contract/vfo/fault/v1" xmlns:bf="http://docs.oasis-open.org/wsrf/bf-2">
+    <faultcode>Business</faultcode>
+    <faultstring>Invalid bank</faultstring>
+    <detail>
+      <v1:Fault>
+        <bf:Timestamp>2025-07-18T08:06:37.968+02:00</bf:Timestamp>
+      </v1:Fault>
+      <v1:ServiceProviderFault>
+        <bf:ErrorCode dialect="http://xmlns.TEST.co.za/services/DebiCheck/v1">ERR:GEN:SPBUS</bf:ErrorCode>
+        <bf:Description>Business error in XYZ</bf:Description>
+        <bf:FaultCause>Invalid bank</bf:FaultCause>
+        <v1:FaultType>Business error in XYZ</v1:FaultType>
+      </v1:ServiceProviderFault>
+    </detail>
+  </soapenv:Fault>
+</soapenv:Body>
+
+
+<Jul 30, 2025 6:30:38,124 AM GMT+02:00> <Error> <oracle.sdp.internal.messaging.driver.email.inbound.MailboxPollingWorker> <SDP-26101> <An exception was caught.
+java.lang.RuntimeException: java.io.IOException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+
+
+<Jul 30, 2025 8:06:56,460 AM GMT+02:00> <Error> <oracle.sdp.internal.messaging.driver.email.inbound.MailboxPollingWorker> <SDP-26101> <An exception was caugh
+t.
+java.lang.RuntimeException: Failed to connect to incoming email server: 12.2.2.2.2, 123, username=testmail@xyz.com, folderName=INBOX, sslEnabled=tr
+ue
+        at oracle.sdpinternal.messaging.driver.email.inbound.EmailStore.connectStore(EmailStore.java:140)
+        at oracle.sdpinternal.messaging.driver.email.inbound.EmailStore.initStore(EmailStore.java:88)
+        at oracle.sdpinternal.messaging.driver.email.inbound.EmailInboundConnection.getInitializedEmailStore(EmailInboundConnection.java:596)
+        at oracle.sdpinternal.messaging.driver.email.inbound.MailboxPollingWorker.run(MailboxPollingWorker.java:41)
+        at oracle.sdp.messaging.newdriver.DriverConnectionBase$DriverConnectionWork.run(DriverConnectionBase.java:435)
+        at weblogic.work.j2ee.J2EEWorkManager$WorkWithListener.run(J2EEWorkManager.java:209)
+        at weblogic.invocation.ComponentInvocationContextManager._runAs(ComponentInvocationContextManager.java:352)
+        at weblogic.invocation.ComponentInvocationContextManager.runAs(ComponentInvocationContextManager.java:337)
+        at weblogic.work.LivePartitionUtility.doRunWorkUnderContext(LivePartitionUtility.java:57)
+        at weblogic.work.PartitionUtility.runWorkUnderContext(PartitionUtility.java:41)
+        at weblogic.work.SelfTuningWorkManagerImpl.runWorkUnderContext(SelfTuningWorkManagerImpl.java:655)
+        at weblogic.work.ExecuteThread.execute(ExecuteThread.java:420)
+        at weblogic.work.ExecuteThread.run(ExecuteThread.java:360)
+Caused By: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: 12.2.2.2.2 ,123; timeout 60000;
+
+
+
+
+
